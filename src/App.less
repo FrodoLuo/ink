@@ -1,0 +1,61 @@
+@import './common-styles/color.less';
+// transition
+* {
+  transition: all ease 0.4s;
+  font-family: 'STXihei'
+}
+
+div {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: @background-color;
+  margin: 0;
+  padding: 0;
+}
+
+.content-wrapper {
+  max-width: 80rem;
+  padding: 1rem 2.5rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  .main-content {
+    flex: 0.625;
+  }
+  .rail-content {
+    flex: 0.33;
+    position: sticky;
+    top: 0px;
+    height: fit-content;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: @primary-color;
+  font-weight: normal;
+  margin-top: 0.5rem;
+}
+
+a {
+  color: @primary-color;
+  text-decoration: none;
+  &:hover {
+    color: @active-color;
+  }
+}
+
+hr{
+  background-color: #8a8a8a;
+  width: 100%;
+  height: 1px;
+  content: ' ';
+  border: none;
+}
