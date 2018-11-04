@@ -1,7 +1,6 @@
 @import "../../common-styles/color.less";
 @import "../../common-styles/shape.less";
-
-button.ink{
+button.ink {
   border: @plain-border;
   border-radius: 2rem;
   height: 1.6rem;
@@ -14,18 +13,29 @@ button.ink{
   background-color: white;
   cursor: pointer;
   outline: none;
-  &:hover{
+  &:hover {
     border: @entity-border;
     color: @primary-color;
-    &.primary{
+    &.primary {
       color: white;
       background-color: @active-color;
     }
   }
-  &.primary{
+  &.primary {
     color: white;
     border-color: transparent;
     background-color: @primary-color;
   }
-
+  .icon-loading {
+    margin-left: 0.5rem;
+    animation: rotate 1s linear infinite;
+    @keyframes rotate {
+      0% {
+        transform: rotate(0);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
 }

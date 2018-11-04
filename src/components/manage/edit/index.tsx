@@ -1,15 +1,18 @@
 import * as React from 'react';
+import { withRouter, RouteComponentProps } from 'react-router';
 import { InkInput, TextArea } from 'src/components/input-entities/Inputs';
 import InkButton from 'src/components/input-entities/Button';
 import './style.less';
 import MarkdownService from 'src/service/markdown.service';
+import ArticleService from 'src/service/article.service';
 
-export default class Editor extends React.Component {
+class Editor extends React.Component<RouteComponentProps> {
   public state = {
     title: '',
     source: '',
     html: '',
-    preview: false
+    preview: false,
+    submitting: false,
   };
   public togglePreview = () => {
     this.setState({
@@ -18,6 +21,21 @@ export default class Editor extends React.Component {
   }
   public renderHtml = () => {
     return MarkdownService.render(this.state.source);
+  }
+  public submit = () => {
+    const article = {
+      source: this.state.source,
+      title: this.state.title,
+    };
+    this.setState({
+      submitting: true
+    });
+    ArticleService().postArticle(article.title, article.source).then((res) => {
+      switch(res.status) {
+        case 200:
+          this.props.history.push(`/article/${res.data.id}`);
+      }
+    });
   }
   public render() {
     return (<>
@@ -44,7 +62,9 @@ export default class Editor extends React.Component {
           </div>
         </div>
       </div>
-      <InkButton type="primary">提交</InkButton>
+      <InkButton loading={this.state.submitting} type="primary" onClick={this.submit}>提交</InkButton>
     </>);
   }
 }
+
+export default withRouter(Editor);

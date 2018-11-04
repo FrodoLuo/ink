@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import ArticleService from 'src/service/article.service';
 import InkButton from 'src/components/input-entities/Button';
 import { IArticle } from 'src/models/article.model';
 import './style.less';
 import { Subscription } from 'rxjs';
-export default class ArticleManage extends React.Component {
+class ArticleManage extends React.Component<RouteComponentProps> {
   public state = {
     articles: [],
     currentPage: 0,
@@ -44,7 +44,7 @@ export default class ArticleManage extends React.Component {
         <h2>文章</h2>
         <div className="article-manage-wrapper">
           <div className="article-manage-btn-wrapper">
-            <InkButton type="primary">新文章</InkButton>
+            <InkButton type="primary" onClick={() => { this.props.history.push('/edit'); }}>新文章</InkButton>
           </div>
           <div className="article-manage-list-wrapper">
             <table cellSpacing="0">
@@ -64,3 +64,5 @@ export default class ArticleManage extends React.Component {
     );
   }
 }
+
+export default withRouter(ArticleManage);

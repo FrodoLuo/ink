@@ -11,7 +11,7 @@ interface BtnProps {
 
 const InkButton = (props: BtnProps) => {
   return (
-    <button onClick={props.onClick} className={`ink ${props.type}`}>
+    <button disabled={props.loading} onClick={props.onClick} className={`ink ${props.type}`}>
       {props.children}
       {props.loading ? <i className="iconfont icon-loading" /> : null}
     </button>

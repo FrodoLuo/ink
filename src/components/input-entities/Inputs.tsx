@@ -30,7 +30,7 @@ export function InkInput(props: InputComponentProps) {
           }}
           type={props.type}
           placeholder={props.placeholder}
-          value={value}
+          defaultValue={value}
         />
         {props.icon ?
           <i onClick={() => {

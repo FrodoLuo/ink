@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { BehaviorSubject, from, Observable, Subscriber } from 'rxjs';
-import { getArticleComments, getArticleContent, getArticles, getArticlesByUser } from '../api/article.api';
+import { getArticleComments, getArticleContent, getArticles, getArticlesByUser, createArticle } from '../api/article.api';
 import { IArticle } from '../models/article.model';
 class ArticleService {
 
@@ -37,6 +37,9 @@ class ArticleService {
       });
   }
 
+  public postArticle(title: string, content: string) {
+    return createArticle(title, content);
+  }
 }
 
 export default ArticleService.getInstance;
