@@ -2,7 +2,7 @@ import Axios, { AxiosRequestConfig } from 'axios';
 import { get as getCookie } from 'js-cookie';
 
 const httpAuthorizedOptions: AxiosRequestConfig = {
-  baseURL: process.env.NODE_ENV != 'production' ? 'http://localhost:5000' : 'http://www.frodoluo.com:5000',
+  baseURL: process.env.NODE_ENV != 'production' ? 'http://localhost:5000' : 'http://www.frodoluo.ink:5000',
 };
 const headers = () => {
   return {
