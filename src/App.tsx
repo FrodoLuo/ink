@@ -4,15 +4,15 @@ import { Route, Switch } from 'react-router-dom';
 import AuthService from './service/auth.service';
 import './App.less';
 /* Layouts */
-import Header from './components/header';
-import SideRail from './components/side-rail';
+import Header from 'src/components/header';
+import SideRail from 'src/components/side-rail';
 /* Pages */
 import { AuthorizedPage } from './pages';
-import ArticleHome from './pages/article';
-import ArticleDetail from './pages/article-detail';
-import NotFoundPage from './pages/not-found';
-import ManagePage from './pages/manage';
-import EditPage from './pages/editor';
+import ArticleHome from 'src/pages/article';
+import ArticleDetail from 'src/pages/article-detail';
+import NotFoundPage from 'src/pages/not-found';
+import ManagePage from 'src/pages/manage';
+import EditPage from 'src/pages/editor';
 
 class App extends React.Component {
   public async componentDidMount() {
