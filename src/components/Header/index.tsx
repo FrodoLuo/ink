@@ -1,14 +1,10 @@
 import * as React from 'react';
-import { connect, DispatchProp } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
-import { SearchInput } from '../Inputs/Inputs';
+import ArticleService from '../../service/article.service';
+import { SearchInput } from '../input-entities/Inputs';
 import './style.less';
 
-interface IProps extends DispatchProp {
-  location: any;
-}
-
-class Header extends React.Component<IProps> {
+class Header extends React.Component {
   public render() {
     return (
       <>
@@ -16,16 +12,16 @@ class Header extends React.Component<IProps> {
           <div className="nav-wrapper">
             <nav>
               <NavLink exact={true} to="/">
-                文章
+                <span>文章</span>
               </NavLink>
               <NavLink to="/album" activeClassName="active">
-                照片
+                <span>照片</span>
               </NavLink>
               <NavLink to="/clipboard">
-                留言板
+                <span>留言板</span>
               </NavLink>
               <NavLink to="/aboutme">
-                关于我
+                <span>关于我</span>
               </NavLink>
             </nav>
             <div className="search-wrapper">

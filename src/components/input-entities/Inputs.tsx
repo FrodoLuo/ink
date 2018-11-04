@@ -2,28 +2,35 @@ import * as React from 'react';
 import './input.less';
 
 interface InputComponentProps {
-  onChange?: (event: React.ChangeEvent) => void;
+  onChange?: (value: string) => void;
   onEnter?: (event: React.KeyboardEvent) => void;
   onCommit?: (value: string) => void;
   icon?: string;
+  type?: string;
+  placeholder?: string;
+  value?: string;
+  className?: string;
 }
 
-export function Input(props: InputComponentProps) {
-  let value = '';
+export function InkInput(props: InputComponentProps) {
+  let value = props.value || '';
   return (() => {
     return (
       <span className="ink input-wrapper">
         <input
-          className="ink"
+          className={`ink ${props.icon ? 'iconed' : ''} ${props.className || ''}`}
           onChange={(e) => {
             value = e.currentTarget.value;
             if (props.onChange) {
-              props.onChange(e);
+              props.onChange(e.target.value);
             }
           }}
           onKeyPress={(e) => {
             if (e.key === 'Enter') { if (props.onEnter) { props.onEnter(e); } }
           }}
+          type={props.type}
+          placeholder={props.placeholder}
+          value={value}
         />
         {props.icon ?
           <i onClick={() => {
@@ -37,10 +44,27 @@ export function Input(props: InputComponentProps) {
     );
   })();
 }
+interface TextAreaProps extends InputComponentProps {
+  resizable?: boolean;
+}
+export function TextArea(props: TextAreaProps) {
+  return (
+    <textarea
+      className={`ink ${props.className || ''}`}
+      {...props}
+      onChange={(e) => {
+        if (props.onChange) {
+          props.onChange(e.target.value);
+        }
+      }}
+      value={props.value || ''}
+    />
+  );
+}
 
 export function SearchInput() {
   return (
-    <Input
+    <InkInput
       icon="search"
       onEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
         console.log(e.currentTarget.value);

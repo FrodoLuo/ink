@@ -1,8 +1,19 @@
 @import './common-styles/color.less';
-// transition
+@font-face {
+  font-family: 'MFNianzhen';
+  font-weight: normal;
+  src: url('./assets/fonts/MFNianZhen-Noncommercial-Regular.woff');
+}
+
+@font-face {
+  font-family: 'MFKeSong';
+  font-weight: normal;
+  src: url('./assets/fonts/MFKeSong_Noncommercial-Regular.woff');
+}
+
 * {
   transition: all ease 0.4s;
-  font-family: 'STXihei'
+  font-family: 'MFNianzhen';
 }
 
 div {
@@ -34,6 +45,32 @@ body {
   }
 }
 
+p,
+div,
+span {
+  font-size: 1.3rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.3rem;
+}
+
 h1,
 h2,
 h3,
@@ -52,10 +89,32 @@ a {
   }
 }
 
-hr{
+hr {
   background-color: #8a8a8a;
   width: 100%;
   height: 1px;
   content: ' ';
   border: none;
+}
+
+.fade-in {
+  opacity: 0;
+  &.animating {
+    transition: opacity 500ms ease-in;
+    opacity: 1
+  }
+}
+
+.fade-out {
+  opacity: 1;
+  &.animating {
+    transition: opacity 500ms ease-out;
+    opacity: 0;
+  }
+}
+
+.article {
+  img {
+    width: 100%;
+  }
 }

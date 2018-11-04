@@ -1,0 +1,31 @@
+@import "../../common-styles/color.less";
+@import "../../common-styles/shape.less";
+
+button.ink{
+  border: @plain-border;
+  border-radius: 2rem;
+  height: 1.6rem;
+  padding: 0 1rem;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: @font-color;
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+  &:hover{
+    border: @entity-border;
+    color: @primary-color;
+    &.primary{
+      color: white;
+      background-color: @active-color;
+    }
+  }
+  &.primary{
+    color: white;
+    border-color: transparent;
+    background-color: @primary-color;
+  }
+
+}

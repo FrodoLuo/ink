@@ -1,5 +1,9 @@
 {
-  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-config-prettier"
+  ],
   "linterOptions": {
     "exclude": [
       "config/**/*.js",
@@ -7,10 +11,15 @@
       "coverage/lcov-report/*.js"
     ]
   },
-  "rules":{
+  "rules": {
     "no-console": false,
     "jsx-no-lambda": false,
     "interface-name": false,
-    "semicolon": true
+    "semicolon": true,
+    "triple-equals": false,
+    "object-literal-sort-keys": false,
+    "variable-name": false,
+    "trailing-comma": true,
+    "ordered-imports": false
   }
 }

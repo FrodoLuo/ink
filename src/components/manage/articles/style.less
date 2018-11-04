@@ -1,0 +1,29 @@
+.article-manage-list-wrapper {
+  table {
+    width: 100%;
+    .date {
+      text-align: center;
+    }
+    .action {
+      text-align: center;
+      span {
+        display: inline-flex;
+        align-items: center;
+      }
+      span:not(:first-child)::before {
+        display: inline-block;
+        content: ' ';
+        background-color: black;
+        height: 1rem;
+        width: 1px;
+        margin: 0 0.3rem;
+      }
+    }
+    tr {
+      height: 2rem;
+      &:hover {
+        background-color: whitesmoke;
+      }
+    }
+  }
+}
