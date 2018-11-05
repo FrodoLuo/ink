@@ -1,0 +1,55 @@
+@import '../../common-styles/color';
+header {
+  height: 4rem;
+  background-color: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.16);
+}
+
+.nav-wrapper {
+  max-width: 80rem;
+  padding: 0 2.5rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  nav {
+    display: flex;
+    justify-content: flex-start;
+    a {
+      color: @primary-color;
+      text-decoration: none;
+      outline: none;
+      font-size: 20px;
+      text-align: center;
+      margin-right: 30px;
+      line-height: 4rem;
+      position: relative;
+      span{
+        display: inline-block;
+        padding: 0 1.5rem;
+      }
+      &::after{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        content: ' ';
+        background-color: transparent;
+        transition: all ease 0.4s;
+      }
+      &.active::after{
+        background-color: @primary-color;
+      }
+      &:hover {
+        color: @active-color;
+        &.active::after{
+            background-color: @active-color;
+        }
+      }
+    }
+  }
+}
