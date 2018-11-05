@@ -1,10 +1,12 @@
 @import '../../common-styles/color';
 .article.back{
   cursor: pointer;
-  border-radius: 50%;
+  display: inline-block;
+  border-radius: 10px;
   width: 36px;
   height: 36px;
   text-align: center;
+  margin-right: 1rem;
   i{
     font-size: 1rem;
     color: @primary-color;
@@ -13,4 +15,15 @@
   &:hover{
     background-color: rgba(0,0,0,0.1);
   }
+}
+.article.title{
+  margin: 0;
+}
+.article.title-wrapper{
+  display: flex;
+  align-items: center;
+}
+.article.info-wrapper{
+  color: gray;
+  text-align: right;
 }

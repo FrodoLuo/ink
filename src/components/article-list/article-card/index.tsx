@@ -21,7 +21,7 @@ export default ({ article }: ArticleCardProps) => {
         <span className="name-wrapper">{article.user.name}</span>
       </div>
       <h1><Link to={`/article/${article.id}`}>{article.title}</Link></h1>
-      <div className="card article-brief article" dangerouslySetInnerHTML={{ __html: MarkdownIt().render(article.brief) }} />
+      <article className="card article-brief" dangerouslySetInnerHTML={{ __html: MarkdownIt().render(article.brief) }} />
       <hr />
       <div className="card article-footer">
         <span>

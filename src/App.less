@@ -1,19 +1,11 @@
 @import './common-styles/color.less';
 @font-face {
-  font-family: 'MFNianzhen';
-  font-weight: normal;
-  src: url('./assets/fonts/MFNianZhen-Noncommercial-Regular.woff');
+  font-family: 'Xihei';
+  src: url('./assets/fonts/DMFT1506077116334.ttf');
 }
-
-@font-face {
-  font-family: 'MFKeSong';
-  font-weight: normal;
-  src: url('./assets/fonts/MFKeSong_Noncommercial-Regular.woff');
-}
-
 * {
   transition: all ease 0.4s;
-  font-family: 'MFNianzhen';
+  font-family: 'Xihei';
 }
 
 div {
@@ -48,29 +40,8 @@ body {
 p,
 div,
 span {
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
-
-h1 {
-  font-size: 2.5rem;
-}
-
-h2 {
-  font-size: 2rem;
-}
-
-h3 {
-  font-size: 1.8rem;
-}
-
-h4 {
-  font-size: 1.5rem;
-}
-
-h5 {
-  font-size: 1.3rem;
-}
-
 h1,
 h2,
 h3,
@@ -113,8 +84,26 @@ hr {
   }
 }
 
-.article {
+article {
+  pre {
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 0.5rem;
+  }
+  code {
+    background-color: lightgray;
+    padding: 0.2rem;
+    border-radius: 10px;
+  }
   img {
     width: 100%;
+  }
+  ul {
+    padding-left: 1rem;
+    margin: 0.5rem 0;
+
+  }
+  p{
+    margin: 1rem 0 0 0;
   }
 }
