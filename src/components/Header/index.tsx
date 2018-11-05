@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
-import ArticleService from '../../service/article.service';
+import { NavLink } from 'react-router-dom';
 import { SearchInput } from '../input-entities/Inputs';
 import './style.less';
 
