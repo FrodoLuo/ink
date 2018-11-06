@@ -1,0 +1,40 @@
+@xs: 441px;
+@sm: 768px;
+@md: 968px;
+@lg: 1200px;
+@xl: 1440px;
+@media(min-width: @xl) {
+    :root {
+        font-size: 17px;
+    }
+}
+
+@media(max-width: @xl) and (min-width: @lg) {
+    :root {
+        font-size: 16px;
+    }
+}
+
+@media(max-width: @lg) and (min-width: @md) {
+    :root {
+        font-size: 15px;
+    }
+}
+
+@media(max-width: @md) and (min-width: @sm) {
+    :root {
+        font-size: 14px;
+    }
+}
+
+@media(max-width: @sm) and (min-width: @xs) {
+    :root {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: @xs) {
+    :root {
+        font-size: 12px;
+    }
+}

@@ -4,12 +4,19 @@ import { SearchInput } from '../input-entities/Inputs';
 import './style.less';
 
 class Header extends React.Component {
+  public state = {
+    showNav: false,
+  };
   public render() {
     return (
       <>
         <header>
           <div className="nav-wrapper">
-            <nav>
+            <div
+              onClick={() => { this.setState({ showNav: false }); }}
+              className={`nav-mask ${this.state.showNav ? 'active' : ''}`}
+            />
+            <nav className={this.state.showNav ? 'active' : ''}>
               <NavLink exact={true} to="/">
                 <span>文章</span>
               </NavLink>
@@ -25,6 +32,12 @@ class Header extends React.Component {
             </nav>
             <div className="search-wrapper">
               <SearchInput />
+            </div>
+            <div
+              className="nav-btn"
+              onClick={() => { this.setState({ showNav: true }); }}
+            >
+              <i className="iconfont icon-menu" />
             </div>
           </div>
         </header>
