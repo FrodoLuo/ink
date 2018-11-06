@@ -4,6 +4,7 @@ import Card from '../cards';
 import './style.less';
 import AuthService from '../../service/auth.service';
 import { InkForm, field, btn } from '../input-entities/Form';
+
 export default () => {
   return (
     <>
@@ -29,6 +30,11 @@ export default () => {
           </div>
         </a>
         <ManageEntry />
+      </div>
+      <div className="side-banner">
+        <a href="https://www.vultr.com/?ref=7411925" target="_blank">
+          <img src="https://www.vultr.com/media/badge_onwhite.svg" />
+        </a>
       </div>
     </>
   );
