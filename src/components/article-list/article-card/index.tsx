@@ -17,7 +17,7 @@ export default ({ article }: ArticleCardProps) => {
   return (
     <Card>
       <div className="card author-wrapper">
-        <span className="avatar-wrapper"><img src={mockAvatar} /></span>
+        {/* <span className="avatar-wrapper"><img src={mockAvatar} /></span> */}
         <span className="name-wrapper">{article.user.name}</span>
       </div>
       <h1><Link to={`/article/${article.id}`}>{article.title}</Link></h1>
@@ -27,11 +27,11 @@ export default ({ article }: ArticleCardProps) => {
         <span>
           最后编辑于{new Date(article.updateDate).toLocaleString()}
         </span>
-        <span>
-          {/* {article.comments} */}
+        {/* <span>
+          {article.comments}
           0
           <i className="iconfont icon-commented" />
-        </span>
+        </span> */}
       </div>
     </Card>
   );

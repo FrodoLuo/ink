@@ -9,40 +9,43 @@ import MarkdownService from '../../service/markdown.service';
 interface State {
   html: string;
   currentArticle: IArticle | null;
+  loading: boolean;
 }
 
 class ArticleDetailPage extends React.Component<RouteComponentProps<any>> {
   public state: State = {
     html: '',
     currentArticle: null,
+    loading: false,
   };
-  private articleSubscription: Subscription;
   public componentWillMount() {
-    this.articleSubscription =
-      ArticleService().articles.subscribe(articles => {
-        const article = articles.find(i => i.id == this.props.match.params.id);
-        console.log(article);
-        this.setState({
-          currentArticle: article,
-        });
-        if (article) {
-          ArticleService().getContentHtml(article.mdUrl)
-            .then((res) => {
-              this.setState({
-                html: MarkdownService.render(res.data)
-              });
-            });
+    ArticleService().getArticleById(this.props.match.params.id)
+      .then(res => {
+        if (res.status === 200) {
+          this.setState({
+            currentArticle: res.data,
+          });
         }
+        return res.data;
+      })
+      .then(article => {
+        this.setState({
+          loading: true,
+        });
+        return ArticleService().getContentHtml(article.mdUrl);
+      })
+      .then((res) => {
+        this.setState({
+          html: MarkdownService.render(res.status === 200 ? res.data : '# 文章不存在'),
+          loading: false,
+        });
       });
   }
-  public componentWillUnmount() {
-    console.log('unsubsribe');
-    this.articleSubscription.unsubscribe();
-  }
+
   public render() {
     return (
       <>
-        <ArticleDetail article={this.state.currentArticle} html={this.state.html} />
+        <ArticleDetail loading={this.state.loading} article={this.state.currentArticle} html={this.state.html} />
       </>
     );
   }

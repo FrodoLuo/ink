@@ -10,6 +10,10 @@ export function getArticlesByUser(): Promise<AxiosResponse> {
   return get('/articles?filter=user');
 }
 
+export function getArticleById(id: number): Promise<AxiosResponse> {
+  return get(`/articles/${id}`);
+}
+
 export function getArticleComments(id: number | string): Promise<AxiosResponse> {
   return get(`/comments`, { articleId: id });
 }

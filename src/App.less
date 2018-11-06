@@ -18,7 +18,18 @@ body {
   margin: 0;
   padding: 0;
 }
-
+.loading{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
+  .icon-loading{
+    font-size: 4rem;
+    color: lightgray;
+    animation: rotate 1s linear infinite;
+  }
+}
 .content-wrapper {
   max-width: 80rem;
   padding: 1rem 2.5rem;

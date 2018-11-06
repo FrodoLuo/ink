@@ -45,6 +45,7 @@ class RawManageEntry extends React.Component<RouteComponentProps> {
   public state = {
     show: false,
     error: '',
+    requesing: false,
   };
   public showSignIn = () => {
     if (AuthService().user.getValue() != null) {
@@ -65,8 +66,10 @@ class RawManageEntry extends React.Component<RouteComponentProps> {
     });
   }
   public signIn = async (form: any) => {
+    this.setState({ requesing: true });
     const { userName, password } = form;
     const pass = await AuthService().signInMethod(userName, password);
+    this.setState({ requesing: false });
     if (pass) {
       this.props.history.push('/manage');
       this.setState({
@@ -90,7 +93,7 @@ class RawManageEntry extends React.Component<RouteComponentProps> {
                   {[
                     field('userName', 'text', 'smile', true),
                     field('password', 'password', 'password', true),
-                    btn('确定')
+                    btn('确定', undefined, undefined, this.state.requesing)
                   ]}
                 </InkForm>
                 <div className="signIn-error">

@@ -7,6 +7,7 @@ import './style.less';
 interface ArticleDetailProps {
   article: IArticle | null | undefined;
   html: string;
+  loading: boolean;
 }
 
 const ArticleDetail = (props: ArticleDetailProps) => {
@@ -30,7 +31,11 @@ const ArticleDetail = (props: ArticleDetailProps) => {
         <span>{props.article ? new Date(props.article.updateDate).toLocaleString() : ''}</span>
       </div>
       <div className="article wrapper">
-        <article className="card article-brief article" dangerouslySetInnerHTML={{ __html: props.html }} />
+        {props.loading ?
+          (<div className="loading"><i className="iconfont icon-loading" /></div>)
+          :
+          (<article className="card article-brief article" dangerouslySetInnerHTML={{ __html: props.html }} />)}
+
       </div>
     </Card>
   );
