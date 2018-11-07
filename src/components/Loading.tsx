@@ -3,10 +3,10 @@ import Card from './cards';
 
 export default () => {
   return (
-    <div className="loading">
-      <Card>
+    <Card>
+      <div className="loading">
         <i className="iconfont icon-loading" />
-      </Card>
-    </div>
+      </div>
+    </Card>
   );
 };
