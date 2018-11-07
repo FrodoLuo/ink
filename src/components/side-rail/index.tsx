@@ -91,9 +91,9 @@ class RawManageEntry extends React.Component<RouteComponentProps> {
               <div className="form-wrapper">
                 <InkForm onSubmit={this.signIn}>
                   {[
-                    field('userName', 'text', 'smile', true),
-                    field('password', 'password', 'password', true),
-                    btn('确定', undefined, undefined, this.state.requesing)
+                    field({ name: 'userName', type: 'text', icon: 'smile', fieldType: 'field', required: true, }),
+                    field({ name: 'password', type: 'password', icon: 'password', fieldType: 'field', required: true }),
+                    btn({ text: '确定', type: 'submit', loading: this.state.requesing })
                   ]}
                 </InkForm>
                 <div className="signIn-error">

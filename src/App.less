@@ -4,6 +4,7 @@
   font-family: 'Xihei';
   src: url('./assets/fonts/DMFT1506077116334.ttf');
 }
+
 * {
   transition: all ease 0.4s;
   font-family: 'Xihei';
@@ -18,14 +19,27 @@ body {
   margin: 0;
   padding: 0;
 }
-.loading{
+
+.fetching-trigger{
+  padding: 0.5rem 0;
+  text-align: center;
+  margin-top: .5rem;
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+  &:hover{
+    background-color: #ddd;
+  }
+}
+
+.loading {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   padding: 3rem 0;
-  .icon-loading{
+  .icon-loading {
     font-size: 4rem;
     height: 4rem;
     width: 4rem;
@@ -34,6 +48,7 @@ body {
     animation: rotate 1s linear infinite;
   }
 }
+
 .content-wrapper {
   max-width: 80rem;
   padding: 1rem 2.5rem;
@@ -42,10 +57,6 @@ body {
   margin: auto;
   display: flex;
   justify-content: space-between;
-  @media(max-width: @sm) {
-      flex-direction: column;
-      padding-top: 5rem;
-  }
   .main-content {
     flex: 0.625;
   }
@@ -55,6 +66,13 @@ body {
     top: 0px;
     height: fit-content;
   }
+  @media(max-width: @sm) {
+    flex-direction: column-reverse;
+    padding-top: 5rem;
+    .rail-content {
+      position: relative;
+    }
+  }
 }
 
 p,
@@ -62,6 +80,7 @@ div,
 span {
   font-size: 1rem;
 }
+
 h1,
 h2,
 h3,
@@ -122,9 +141,8 @@ article {
   ul {
     padding-left: 1rem;
     margin: 0.5rem 0;
-
   }
-  p{
+  p {
     margin: 1rem 0 0 0;
   }
 }

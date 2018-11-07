@@ -20,15 +20,15 @@ class Header extends React.Component<RouteComponentProps> {
               <NavLink exact={true} to="/">
                 <span>文章</span>
               </NavLink>
-              <NavLink to="/album" activeClassName="active">
+              {/* <NavLink to="/album" activeClassName="active">
                 <span>照片</span>
-              </NavLink>
-              <NavLink to="/clipboard">
+              </NavLink> */}
+              <NavLink to="/message">
                 <span>留言板</span>
               </NavLink>
-              <NavLink to="/aboutme">
+              {/* <NavLink to="/aboutme">
                 <span>关于我</span>
-              </NavLink>
+              </NavLink> */}
             </nav>
             <div className="search-wrapper">
               <SearchInput />

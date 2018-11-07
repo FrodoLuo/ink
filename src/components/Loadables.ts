@@ -14,3 +14,8 @@ export const ArticleDetail = Loadable({
     loader: () => import('./article-detail'),
     loading: Loading
 });
+
+export const CommentList = Loadable({
+    loader: () => import('./comments'),
+    loading: Loading,
+});

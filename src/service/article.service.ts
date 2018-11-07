@@ -16,16 +16,15 @@ class ArticleService {
 
   private articles$ = new BehaviorSubject<IArticle[]>([]);
 
-  constructor() {
-    console.log('service create');
-    this.refreshArticle();
-  }
+  private currentPage = 0;
 
   public getContentHtml(url: string) { return getArticleContent(url); }
 
   public refreshArticle() {
-    getArticles()
+    this.currentPage = 0;
+    getArticles(0)
       .then((res: AxiosResponse) => {
+        this.currentPage += 1;
         this.articles$.next(res.data);
       });
   }
@@ -35,12 +34,25 @@ class ArticleService {
   public refreshArticleOfUser() {
     getArticlesByUser()
       .then(res => {
-        this.articles$.next(res.data);
+        if (res.status === 200) {
+          this.articles$.next(res.data);
+        }
       });
   }
 
   public postArticle(title: string, content: string) {
     return createArticle(title, content);
+  }
+
+  public getMoreArticles() {
+    console.log(123);
+    getArticles(this.currentPage)
+      .then((res: AxiosResponse) => {
+        if (res.data.length > 0) {
+          this.currentPage += 1;
+          this.articles$.next(this.articles$.getValue().concat(res.data));
+        }
+      });
   }
 }
 

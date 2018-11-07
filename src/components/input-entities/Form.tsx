@@ -1,26 +1,28 @@
 import * as React from 'react';
-import { InkInput } from './Inputs';
+import { InkInput, TextArea } from './Inputs';
 import './form.less';
 import InkButton from './Button';
 
 export interface Field {
-  fieldType: 'field';
+  fieldType?: 'field' | 'textarea';
   name: string;
-  required: boolean;
-  type: string;
-  rules: Array<{
+  required?: boolean;
+  type?: string;
+  rules?: Array<{
     validator: (value: string) => boolean;
     hint: string;
   }>;
+  placeholder?: string;
+  label?: string;
   icon?: string;
   button?: boolean;
 }
 export interface ButtonField {
-  fieldType: 'button';
   text: string;
-  loading: boolean;
-  type: string;
-  styleType: string | null;
+  fieldType?: 'button';
+  loading?: boolean;
+  type?: string;
+  styleType?: string;
 }
 interface FormProps {
   onSubmit: (object: any) => void;
@@ -48,6 +50,7 @@ export class InkForm extends React.Component<FormProps> {
                     className="ink form-input-wrapper"
                   >
                     {f.icon ? <i className={`iconfont icon-${f.icon}`} /> : null}
+                    {f.label ? <span>{f.label}</span> : null}
                     <InkInput
                       onChange={(value) => {
                         this.setState({
@@ -57,7 +60,31 @@ export class InkForm extends React.Component<FormProps> {
                           }
                         });
                       }}
+                      placeholder={f.placeholder}
                       type={f.type}
+                    />
+                  </div>
+                );
+              case 'textarea':
+                return (
+                  <div
+                    key={f.name}
+                    className="ink form-input-wrapper"
+                  >
+                    {f.icon ? <i className={`iconfont icon-${f.icon}`} /> : null}
+                    {f.label ? <span>{f.label}</span> : null}
+                    <TextArea
+                      onChange={(value) => {
+                        console.log(value);
+                        this.setState({
+                          targetForm: {
+                            ...this.state.targetForm,
+                            [f.name]: value,
+                          }
+                        });
+                      }}
+                      type={f.type}
+                      value={this.state.targetForm[f.name]}
                     />
                   </div>
                 );
@@ -68,12 +95,15 @@ export class InkForm extends React.Component<FormProps> {
                   >
                     <InkButton
                       onClick={f.type === 'submit' ? this.handleSubmit : void (0)}
+                      type={f.styleType || ''}
                       loading={f.loading}
                     >
                       {f.text}
                     </InkButton>
                   </div>
                 );
+              default:
+                return null;
             }
           })
         }
@@ -83,36 +113,29 @@ export class InkForm extends React.Component<FormProps> {
 }
 
 export function field(
-  name: string,
-  type?: string,
-  icon?: string,
-  required?: boolean,
-  rules?: Array<{
-    validator: (value: string) => boolean;
-    hint: string;
-  }>
+  options: Field
 ): Field {
   return {
-    name,
-    type: type || 'text',
-    required: required || false,
-    rules: rules || [],
-    icon,
     fieldType: 'field',
+    ...options,
   };
 }
 
 export function btn(
-  text: string,
-  type?: string,
-  style?: string,
-  loading?: boolean,
+  options: ButtonField
 ): ButtonField {
   return {
-    text,
-    type: type || 'submit',
-    loading: loading || false,
-    styleType: style || null,
     fieldType: 'button',
+    ...options,
+  };
+}
+
+export function textArea(
+  options: Field
+): Field {
+  return {
+    type: 'text',
+    ...options,
+    fieldType: 'textarea',
   };
 }

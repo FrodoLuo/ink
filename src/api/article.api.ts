@@ -2,8 +2,8 @@ import { AxiosResponse } from 'axios';
 import { IArticle } from '../models/article.model';
 import { get, post } from './request';
 
-export function getArticles(): Promise<AxiosResponse> {
-  return get('/articles');
+export function getArticles(page: number): Promise<AxiosResponse> {
+  return get(`/articles?page=${page}`);
 }
 
 export function getArticlesByUser(): Promise<AxiosResponse> {
