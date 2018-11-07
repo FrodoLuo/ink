@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { LoadingComponentProps } from 'react-loadable';
+import Card from './cards';
 
-export default class Loading extends React.Component<LoadingComponentProps> {
-    public render() {
-        return (
-            <div className="loading"><i className="iconfont icon-loading" /></div>
-        );
-    }
-}
+export default () => {
+  return (
+    <div className="loading">
+      <Card>
+        <i className="iconfont icon-loading" />
+      </Card>
+    </div>
+  );
+};

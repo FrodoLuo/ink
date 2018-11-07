@@ -21,7 +21,7 @@ class App extends React.Component {
   public render() {
     return (
       <>
-        <Route component={Header} /> {/* write like is just to rerender the component when change route*/}
+        <Header />
         <div className="content-wrapper">
           <div className="main-content">
             <Switch>

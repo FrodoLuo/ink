@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Redirect } from 'react-router-dom';
 import AuthService from 'src/service/auth.service';
 
+
 export const AuthorizedPage = (Page: any) => {
   return class extends React.Component {
     public state = {
@@ -17,7 +18,6 @@ export const AuthorizedPage = (Page: any) => {
       }
     }
     public render() {
-      console.log('123');
       return this.state.pass ? <Page /> : <Redirect to="/" />;
     }
   };

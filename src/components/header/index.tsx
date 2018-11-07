@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter, RouteComponentProps } from 'react-router-dom';
 import { SearchInput } from '../input-entities/Inputs';
 import './style.less';
 
-class Header extends React.Component {
+class Header extends React.Component<RouteComponentProps> {
   public state = {
     showNav: false,
   };
@@ -55,4 +55,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);

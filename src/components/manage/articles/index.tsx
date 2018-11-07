@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import ArticleService from 'src/service/article.service';
 import InkButton from 'src/components/input-entities/Button';
+import Card from 'src/components/cards';
 import { IArticle } from 'src/models/article.model';
 import './style.less';
 import { Subscription } from 'rxjs';
@@ -40,7 +41,7 @@ class ArticleManage extends React.Component<RouteComponentProps> {
   }
   public render() {
     return (
-      <>
+      <Card>
         <h2>文章</h2>
         <div className="article-manage-wrapper">
           <div className="article-manage-btn-wrapper">
@@ -60,7 +61,7 @@ class ArticleManage extends React.Component<RouteComponentProps> {
             </table>
           </div>
         </div>
-      </>
+      </Card>
     );
   }
 }

@@ -19,6 +19,7 @@ class ArticleList extends React.Component<any> {
         articles
       });
     });
+    ArticleService().refreshArticle();
   }
   public componentWillUnmount() {
     this.articleSubscription.unsubscribe();
