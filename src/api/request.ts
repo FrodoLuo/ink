@@ -23,3 +23,7 @@ export const get = (url: string, data: any = {}, options: AxiosRequestConfig = {
   const query = Object.keys(data).map(key => key + '=' + data[key]).join('&');
   return Axios.get(url + query, opts);
 };
+export const patch = (url: string, data: any = {}, options: AxiosRequestConfig = {}) => {
+  const opts = { ...httpAuthorizedOptions, headers: headers(), ...options, validateStatus: statusValidator };
+  return Axios.patch(url, data, opts);
+};
