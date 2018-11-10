@@ -110,7 +110,7 @@ class Editor extends React.Component<EditorProps> {
             </div>
           </div>
         </div>
-        <InkButton loading={true} type="primary" onClick={this.submit}>提交</InkButton>
+        <InkButton loading={this.state.submitting} type="primary" onClick={this.submit}>提交</InkButton>
       </Card>);
   }
 }
