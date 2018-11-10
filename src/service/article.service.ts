@@ -1,6 +1,13 @@
 import { AxiosResponse } from 'axios';
 import { BehaviorSubject, from, Observable, Subscriber } from 'rxjs';
-import { getArticleById, getArticleContent, getArticles, getArticlesByUser, createArticle } from '../api/article.api';
+import {
+  getArticleById,
+  getArticleContent,
+  getArticles,
+  getArticlesByUser,
+  createArticle,
+  modifyArticle,
+} from '../api/article.api';
 import { IArticle } from '../models/article.model';
 class ArticleService {
 
@@ -29,7 +36,7 @@ class ArticleService {
       });
   }
 
-  public getArticleById(id: number) { return getArticleById(id); }
+  public getArticleById(id: string) { return getArticleById(id); }
 
   public refreshArticleOfUser() {
     getArticlesByUser()
@@ -44,8 +51,11 @@ class ArticleService {
     return createArticle(title, content);
   }
 
+  public modifyArticle(article: any, content: string) {
+    return modifyArticle(article, content);
+  }
+
   public getMoreArticles() {
-    console.log(123);
     getArticles(this.currentPage)
       .then((res: AxiosResponse) => {
         if (res.data.length > 0) {

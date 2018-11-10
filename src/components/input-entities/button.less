@@ -6,13 +6,14 @@ button.ink {
   height: 1.6rem;
   padding: 0.2rem 1rem;
   justify-content: center;
+  display: flex;
   line-height: 1.2rem;
   align-items: center;
   color: @font-color;
   background-color: white;
   cursor: pointer;
   outline: none;
-  &:hover {
+  &:hover:not(:disabled) {
     border: @entity-border;
     color: @primary-color;
     &.primary {
@@ -24,6 +25,10 @@ button.ink {
     color: white;
     border-color: transparent;
     background-color: @primary-color;
+  }
+  &:disabled{
+    color: #eee;
+    background-color: lighten(@primary-color, 20%);
   }
   .icon-loading {
     margin-left: 0.5rem;

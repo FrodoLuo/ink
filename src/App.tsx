@@ -12,7 +12,8 @@ import ArticleHome from 'src/pages/article';
 import ArticleDetail from 'src/pages/article-detail';
 import NotFoundPage from 'src/pages/not-found';
 import ManagePage from 'src/pages/manage';
-import EditPage from 'src/pages/editor';
+import EditPage from 'src/pages/edit-article';
+import CreatePage from 'src/pages/new-article';
 import Comments from './pages/comments';
 
 class App extends React.Component {
@@ -30,7 +31,8 @@ class App extends React.Component {
               <Route exact={true} path="/article/:id" component={ArticleDetail} />
               <Route exact={true} path="/message" component={Comments} />
               <Route exact={true} path="/manage" component={AuthorizedPage(ManagePage)} />
-              <Route exact={true} path="/edit" component={AuthorizedPage(EditPage)} />
+              <Route exact={true} path="/edit" component={AuthorizedPage(CreatePage)} />
+              <Route exact={true} path="/edit/:id" component={AuthorizedPage(EditPage)} modify={true} />
               <Route component={NotFoundPage} />
             </Switch>
           </div>

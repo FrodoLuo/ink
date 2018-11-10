@@ -31,7 +31,7 @@ class ArticleManage extends React.Component<RouteComponentProps> {
           <td className="date">{new Date(i.updateDate).toLocaleString()}</td>
           {/* <td>Coming Soon</td> */}
           <td className="action">
-            <span><a>编辑</a></span>
+            <span><Link to={`/edit/${i.id}`}>编辑</Link></span>
             <span><a>删除</a></span>
           </td>
         </tr>

@@ -12,7 +12,7 @@ interface ArticleDetailState {
 }
 
 interface ArticleDetailProps {
-  id: number;
+  id: string;
 }
 class ArticleDetail extends React.Component<ArticleDetailProps> {
   public state: ArticleDetailState = {

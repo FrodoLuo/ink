@@ -9,7 +9,7 @@ import ArticleService from 'src/service/article.service';
 
 interface EditorProps extends RouteComponentProps {
   modify: boolean;
-  id?: number;
+  id?: string;
 }
 class Editor extends React.Component<EditorProps> {
   public state = {
@@ -18,7 +18,32 @@ class Editor extends React.Component<EditorProps> {
     html: '',
     preview: false,
     submitting: false,
+    originArticle: null,
   };
+  public componentWillMount() {
+    if (this.props.modify && this.props.id) {
+      ArticleService().getArticleById(this.props.id)
+        .then((res: any) => {
+          if (res.status === 200) {
+            console.log(res);
+            this.setState({
+              title: res.data.title,
+              originArticle: res.data,
+            });
+            return ArticleService().getContentHtml(res.data.mdUrl);
+          } else {
+            throw new Error('404');
+          }
+        })
+        .then(res => {
+          if (res.status === 200) {
+            this.setState({
+              source: res.data
+            });
+          }
+        });
+    }
+  }
   public togglePreview = () => {
     this.setState({
       preview: !this.state.preview,
@@ -28,19 +53,36 @@ class Editor extends React.Component<EditorProps> {
     return MarkdownService.render(this.state.source);
   }
   public submit = () => {
-    const article = {
-      source: this.state.source,
-      title: this.state.title,
-    };
     this.setState({
       submitting: true
     });
-    ArticleService().postArticle(article.title, article.source).then((res) => {
-      switch (res.status) {
-        case 200:
-          this.props.history.push(`/article/${res.data.id}`);
-      }
-    });
+    if (this.props.modify) {
+      const article = {
+        ...this.state.originArticle || {},
+        source: this.state.source,
+        title: this.state.title,
+      };
+      ArticleService().modifyArticle(article, this.state.source)
+        .then(res => {
+          if (res.status === 200) {
+            console.log('success');
+            this.setState({
+              submitting: false
+            });
+          }
+        });
+    } else {
+      const article = {
+        source: this.state.source,
+        title: this.state.title,
+      };
+      ArticleService().postArticle(article.title, article.source).then((res) => {
+        switch (res.status) {
+          case 200:
+            this.props.history.push(`/article/${res.data.id}`);
+        }
+      });
+    }
   }
   public render() {
     return (
@@ -48,7 +90,7 @@ class Editor extends React.Component<EditorProps> {
         <div className="editor-info-wrapper">
           <div>
             <span>标题</span>
-            <InkInput onChange={(value) => { this.setState({ title: value }); }} />
+            <InkInput onChange={(value) => { this.setState({ title: value }); }} value={this.state.title} />
           </div>
         </div>
         <div className="editor-wrapper">
@@ -68,7 +110,7 @@ class Editor extends React.Component<EditorProps> {
             </div>
           </div>
         </div>
-        <InkButton loading={this.state.submitting} type="primary" onClick={this.submit}>提交</InkButton>
+        <InkButton loading={true} type="primary" onClick={this.submit}>提交</InkButton>
       </Card>);
   }
 }
