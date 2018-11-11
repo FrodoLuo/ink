@@ -22,11 +22,11 @@ export function getArticleContent(url: string): Promise<AxiosResponse> {
   return get(`/${url}`);
 }
 
-export function createArticle(title: string, content: string): Promise<AxiosResponse> {
+export function createArticle(title: string, tags:string,  content: string): Promise<AxiosResponse> {
   return post('/articles', {
     title,
     content,
-    tags: 'test',
+    tags,
   });
 }
 

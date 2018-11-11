@@ -6,7 +6,7 @@ input.ink {
   width: 100%;
   border-radius: 2rem;
   padding: 0rem 1rem;
-  &.iconed{
+  &.iconed {
     padding: 0rem 1rem 0rem 2rem;
   }
   border: 2px solid @border-color;
@@ -14,7 +14,7 @@ input.ink {
   &:focus {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   }
-  &[type="password"]{
+  &[type="password"] {
     font-family: none;
   }
 }
@@ -35,7 +35,7 @@ i.ink.input {
   position: relative;
 }
 
-textarea.ink{
+textarea.ink {
   width: 100%;
   box-sizing: border-box;
   resize: vertical;
@@ -46,5 +46,26 @@ textarea.ink{
   outline: none;
   &:focus {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.tag-input-wrapper {
+  display: flex;
+  border: 2px solid @border-color;
+  border-radius: 10px;
+  padding: 0.1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  .input {
+    flex: 1;
+  }
+  input {
+    padding: 0.15rem 0.3rem;
+    margin: 0.1rem;
+    border: none;
+    width: 100%;
+    background-color: transparent;
+    box-sizing: border-box;
+    outline: none; // border-bottom: 1px @active-color solid;
   }
 }

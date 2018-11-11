@@ -79,6 +79,10 @@ class ArticleDetail extends React.Component<ArticleDetailProps> {
                     :
                     (<article className="card article-brief article" dangerouslySetInnerHTML={{ __html: this.state.html }} />)}
                 </div>
+                <hr />
+                <div>
+                  {this.state.article ? this.state.article.tags.split(' ').map(tag => <span className="tag" key={tag}>{tag}</span>) : null}
+                </div>
               </>
             )
         }

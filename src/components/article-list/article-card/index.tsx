@@ -32,6 +32,11 @@ export default ({ article }: ArticleCardProps) => {
           0
           <i className="iconfont icon-commented" />
         </span> */}
+        <span className="tags">{article.tags.split(' ').map(tag => {
+          return (
+            <span key={tag} className="tag">{tag}</span>
+          );
+        })}</span>
       </div>
     </Card>
   );

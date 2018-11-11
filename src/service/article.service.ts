@@ -47,8 +47,8 @@ class ArticleService {
       });
   }
 
-  public postArticle(title: string, content: string) {
-    return createArticle(title, content);
+  public postArticle(title: string, tags:string, content: string) {
+    return createArticle(title, tags, content);
   }
 
   public modifyArticle(article: any, content: string) {
