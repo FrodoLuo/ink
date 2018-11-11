@@ -16,6 +16,10 @@ export default () => {
           <div className="side-content">
             <a href="https://samperson1997.github.io/" target="_blank">Blog of Samperson</a>
           </div>
+          <hr />
+          <div>
+            <small>All Content by Luo Yuzhou 2018</small>
+          </div>
         </div>
       </Card>
       <div className="tail-buttons">

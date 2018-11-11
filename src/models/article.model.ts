@@ -7,4 +7,5 @@ export interface IArticle{
   title: string;
   updateDate: Date;
   brief: string;
+  tags: string;
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
-import { InkInput, TextArea } from 'src/components/input-entities/Inputs';
+import { InkInput, TextArea, TagInput } from 'src/components/input-entities/Inputs';
 import Card from 'src/components/cards';
 import InkButton from 'src/components/input-entities/Button';
 import './style.less';
@@ -16,6 +16,7 @@ class Editor extends React.Component<EditorProps> {
     title: '',
     source: '',
     html: '',
+    tags: '',
     preview: false,
     submitting: false,
     originArticle: null,
@@ -25,10 +26,10 @@ class Editor extends React.Component<EditorProps> {
       ArticleService().getArticleById(this.props.id)
         .then((res: any) => {
           if (res.status === 200) {
-            console.log(res);
             this.setState({
               title: res.data.title,
               originArticle: res.data,
+              tags: res.data.tags,
             });
             return ArticleService().getContentHtml(res.data.mdUrl);
           } else {
@@ -61,6 +62,7 @@ class Editor extends React.Component<EditorProps> {
         ...this.state.originArticle || {},
         source: this.state.source,
         title: this.state.title,
+        tags: this.state.tags,
       };
       ArticleService().modifyArticle(article, this.state.source)
         .then(res => {
@@ -75,8 +77,9 @@ class Editor extends React.Component<EditorProps> {
       const article = {
         source: this.state.source,
         title: this.state.title,
+        tags: this.state.tags,
       };
-      ArticleService().postArticle(article.title, article.source).then((res) => {
+      ArticleService().postArticle(article.title, article.tags, article.source).then((res) => {
         switch (res.status) {
           case 200:
             this.props.history.push(`/article/${res.data.id}`);
@@ -84,13 +87,17 @@ class Editor extends React.Component<EditorProps> {
       });
     }
   }
+  public handleTagChange = (tags: string) => {
+    this.setState({
+      tags
+    });
+  }
   public render() {
     return (
       <Card>
         <div className="editor-info-wrapper">
           <div>
-            <span>标题</span>
-            <InkInput onChange={(value) => { this.setState({ title: value }); }} value={this.state.title} />
+            <InkInput placeholder="标题" onChange={(value) => { this.setState({ title: value }); }} value={this.state.title} />
           </div>
         </div>
         <div className="editor-wrapper">
@@ -109,6 +116,9 @@ class Editor extends React.Component<EditorProps> {
               <TextArea value={this.state.source} onChange={(value) => { this.setState({ source: value }); }} />
             </div>
           </div>
+        </div>
+        <div className="editor-input-wrapper">
+          <TagInput initialTags={this.state.tags} onChange={this.handleTagChange} />
         </div>
         <InkButton loading={this.state.submitting} type="primary" onClick={this.submit}>提交</InkButton>
       </Card>);
