@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
 import Card from '../cards';
 import './style.less';
 import AuthService from '../../service/auth.service';
@@ -10,8 +10,10 @@ export default () => {
     <>
       <Card>
         <div className="side">
-          <h3>最近</h3>
+          {/* <h3>最近</h3> */}
           <h3>归档</h3>
+          <div className="side-content"><Link to={`/?keyword=笔记`}>笔记</Link></div>
+          <div className="side-content"><Link to={`/?keyword=日记`}>日记</Link></div>
           <h3>友情链接</h3>
           <div className="side-content">
             <a href="https://samperson1997.github.io/" target="_blank">Blog of Samperson</a>
