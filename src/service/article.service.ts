@@ -27,9 +27,9 @@ class ArticleService {
 
   public getContentHtml(url: string) { return getArticleContent(url); }
 
-  public refreshArticle() {
+  public refreshArticle(keyword?: string) {
     this.currentPage = 0;
-    getArticles(0)
+    getArticles(0, keyword)
       .then((res: AxiosResponse) => {
         this.currentPage += 1;
         this.articles$.next(res.data);
@@ -47,7 +47,7 @@ class ArticleService {
       });
   }
 
-  public postArticle(title: string, tags:string, content: string) {
+  public postArticle(title: string, tags: string, content: string) {
     return createArticle(title, tags, content);
   }
 
@@ -55,8 +55,8 @@ class ArticleService {
     return modifyArticle(article, content);
   }
 
-  public getMoreArticles() {
-    getArticles(this.currentPage)
+  public getMoreArticles(keyword?: string) {
+    getArticles(this.currentPage, keyword)
       .then((res: AxiosResponse) => {
         if (res.data.length > 0) {
           this.currentPage += 1;

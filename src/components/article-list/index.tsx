@@ -22,20 +22,28 @@ class ArticleList extends React.Component<any, State> {
         refreshing: false,
       });
     });
-    ArticleService().refreshArticle();
+    ArticleService().refreshArticle(this.props.keyword || null);
   }
   public componentWillUnmount() {
     this.articleSubscription.unsubscribe();
+  }
+  public componentWillReceiveProps(props: any) {
+    ArticleService().refreshArticle(props.keyword || null);
   }
   public getMoreArticles = () => {
     this.setState({
       refreshing: true,
     });
-    ArticleService().getMoreArticles();
+    ArticleService().getMoreArticles(this.props.keyword || null);
   }
   public render() {
     return (
       <>
+        {this.props.keyword ? (
+          <div>
+            搜索{decodeURI(this.props.keyword)}的结果
+          </div>
+        ) : null}
         {this.renderCard()}
         <div className="fetching-trigger" onClick={this.getMoreArticles}>
           Refresh More

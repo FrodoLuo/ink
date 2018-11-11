@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import ArticleService from '../../service/article.service';
 import MarkdownService from '../../service/markdown.service';
 import { IArticle } from '../../models/article.model';
@@ -80,8 +81,8 @@ class ArticleDetail extends React.Component<ArticleDetailProps> {
                     (<article className="card article-brief article" dangerouslySetInnerHTML={{ __html: this.state.html }} />)}
                 </div>
                 <hr />
-                <div>
-                  {this.state.article ? this.state.article.tags.split(' ').map(tag => <span className="tag" key={tag}>{tag}</span>) : null}
+                <div style={{ display: 'flex' }}>
+                  {this.state.article ? this.state.article.tags.split(' ').map(tag => <span key={tag} className="tag"><Link to={`/?keyword=${tag}`}>{tag}</Link></span>) : null}
                 </div>
               </>
             )

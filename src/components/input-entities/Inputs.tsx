@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './input.less';
+import { withRouter, RouteComponentProps } from 'react-router';
 
 interface InputComponentProps {
   onChange?: (value: string) => void;
@@ -62,19 +63,23 @@ export function TextArea(props: TextAreaProps) {
   );
 }
 
-export function SearchInput() {
+function SInput(props: RouteComponentProps) {
   return (
     <InkInput
       icon="search"
       onEnter={(e: React.KeyboardEvent<HTMLInputElement>) => {
         console.log(e.currentTarget.value);
+        props.history.push(`/?keyword=${e.currentTarget.value}`);
       }}
       onCommit={(value) => {
         console.log(value);
+        props.history.push(`/?keyword=${value}`);
       }}
     />
   );
 }
+
+export const SearchInput = withRouter(SInput);
 
 interface TagInputState {
   tags: string[];
@@ -131,7 +136,7 @@ export class TagInput extends React.Component<TagInputProps> {
           tags: list.concat(this.state.currentTag),
           currentTag: '',
         });
-        if(this.props.onChange) {
+        if (this.props.onChange) {
           this.props.onChange(list.concat(this.state.currentTag).join(' '));
         }
       }

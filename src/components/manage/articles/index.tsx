@@ -27,7 +27,7 @@ class ArticleManage extends React.Component<RouteComponentProps> {
     const list = this.state.articles.map((i: IArticle) => {
       return (
         <tr key={i.id}>
-          <td><Link to={`/article/${i.id}`}>{i.title}</Link></td>
+          <td className="title"><Link to={`/article/${i.id}`}>{i.title}</Link></td>
           <td className="date">{new Date(i.updateDate).toLocaleString()}</td>
           {/* <td>Coming Soon</td> */}
           <td className="action">

@@ -2,8 +2,8 @@ import { AxiosResponse } from 'axios';
 import { IArticle } from '../models/article.model';
 import { get, post, patch } from './request';
 
-export function getArticles(page: number): Promise<AxiosResponse> {
-  return get(`/articles?page=${page}`);
+export function getArticles(page: number, keyword?: string): Promise<AxiosResponse> {
+  return get(`/articles?page=${page}${keyword ? `&keyword=${keyword}` : ''}`);
 }
 
 export function getArticlesByUser(): Promise<AxiosResponse> {
@@ -22,7 +22,7 @@ export function getArticleContent(url: string): Promise<AxiosResponse> {
   return get(`/${url}`);
 }
 
-export function createArticle(title: string, tags:string,  content: string): Promise<AxiosResponse> {
+export function createArticle(title: string, tags: string, content: string): Promise<AxiosResponse> {
   return post('/articles', {
     title,
     content,

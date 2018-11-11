@@ -34,7 +34,7 @@ export default ({ article }: ArticleCardProps) => {
         </span> */}
         <span className="tags">{article.tags.split(' ').map(tag => {
           return (
-            <span key={tag} className="tag">{tag}</span>
+            <span key={tag} className="tag"><Link to={`/?keyword=${tag}`}>{tag}</Link></span>
           );
         })}</span>
       </div>
