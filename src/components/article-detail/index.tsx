@@ -35,6 +35,7 @@ class ArticleDetail extends React.Component<ArticleDetailProps> {
         this.setState({
           loading: true,
         });
+        window.document.title = `${article.title}|FrodoLuoの筆記`;
         return ArticleService().getContentHtml(article.mdUrl);
       })
       .then((res) => {
@@ -43,6 +44,9 @@ class ArticleDetail extends React.Component<ArticleDetailProps> {
           loading: false,
         });
       });
+  }
+  public componentWillUnmount() {
+    window.document.title = 'FrodoLuoの筆記';
   }
   public render() {
     return (

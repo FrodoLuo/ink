@@ -5,6 +5,7 @@ import { RouteComponentProps } from 'react-router';
 
 export default (props: RouteComponentProps) => {
   const keyword = props.location.search.match(/keyword=(.*)/);
+  document.title = 'FrodoLuoの筆記';
   if (keyword) {
     return (
       <ArticleList keyword={keyword[1]} />
